@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "85f3fdd7-c2e4-46db-91e2-aaa087ffc117",
+		"name": "PetStore v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "30444034-85f3fdd7-c2e4-46db-91e2-aaa087ffc117"
+	},
+	"item": [
+		{
+			"name": "pets",
+			"item": [
+				{
+					"name": "{petId}",
+					"item": [
+						{
+							"name": "Info for a specific pet",
+							"id": "9cd71532-7e18-45fb-9943-bff61a4ed041",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pets/:petId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pets",
+										":petId"
+									],
+									"variable": [
+										{
+											"key": "petId",
+											"value": "<string>",
+											"description": "(Required) The id of the pet to retrieve"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"id": "6c250b0d-d00c-4fd2-a88c-ade2ab7aa73e",
+									"name": "Expected response to a valid request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/pets/:petId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pets",
+												":petId"
+											],
+											"variable": [
+												{
+													"key": "petId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"uuid": "a8706688-faa2-455a-a19b-913b3771d57d"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\"\n}"
+								},
+								{
+									"id": "dd0d32ee-b29b-4c0e-9f44-48d4332c05a5",
+									"name": "unexpected error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/pets/:petId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pets",
+												":petId"
+											],
+											"variable": [
+												{
+													"key": "petId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json",
+											"uuid": "2b2d643f-ddd8-451e-b9ea-b017e583a09b"
+										}
+									],
+									"cookie": [],
+									"body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}"
+								}
+							]
+						}
+					],
+					"id": "fdeadd25-044e-4744-be61-763f350e6f95"
+				},
+				{
+					"name": "List all pets",
+					"id": "795564b6-8484-4b6a-a189-ac8919b397b8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/pets?limit=<integer>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "<integer>",
+									"description": "How many items to return at one time (max 100)"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "22228a46-ee6b-41c3-8ea2-af65e54d90ef",
+							"name": "A paged array of pets",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pets?limit=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pets"
+									],
+									"query": [
+										{
+											"description": "How many items to return at one time (max 100)",
+											"key": "limit",
+											"value": "<integer>"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"uuid": "975f279b-f3f3-4c2c-a89f-2c02b8e6b367"
+								},
+								{
+									"disabled": false,
+									"description": {
+										"content": "A link to the next page of responses",
+										"type": "text/plain"
+									},
+									"key": "x-next",
+									"value": "<string>",
+									"uuid": "ccb5e723-8166-4af7-a9eb-e3ffd21e2451"
+								}
+							],
+							"cookie": [],
+							"body": "[\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"tag\": \"<string>\"\n  },\n  {\n    \"id\": \"<long>\",\n    \"name\": \"<string>\",\n    \"tag\": \"<string>\"\n  }\n]"
+						},
+						{
+							"id": "034da785-3484-43fd-a530-cfc3b65d5773",
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/pets?limit=<integer>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pets"
+									],
+									"query": [
+										{
+											"description": "How many items to return at one time (max 100)",
+											"key": "limit",
+											"value": "<integer>"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"uuid": "8878e68c-89e6-480c-9c8d-3c237be37541"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Create a pet",
+					"id": "8d5ecff2-b471-4054-913a-14798b41f89e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/pets",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"pets"
+							]
+						}
+					},
+					"response": [
+						{
+							"id": "a8cedef7-fb49-4ff0-bddd-6a7ecc0aabfd",
+							"name": "Null response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pets"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "text",
+							"header": [],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"id": "1dbec237-951a-49b2-addd-7c83788cb875",
+							"name": "unexpected error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"<long>\",\n  \"name\": \"<string>\",\n  \"tag\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pets",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pets"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"uuid": "b137ab23-352e-4bf2-b302-db32edc5cbec"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"id": "649e2877-1480-4e93-8dfa-f5261e274c74"
+		}
+	],
+	"variable": [
+		{
+			"id": "90a4e88c-a52c-4626-a747-2af36d608f68",
+			"key": "baseUrl",
+			"value": "http://petstore.swagger.io/v1"
+		}
+	]
+}
